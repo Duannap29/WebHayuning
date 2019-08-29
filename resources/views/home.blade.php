@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-11">
             <div class="card">
                 <div class="card-header"></div>
 
@@ -13,15 +13,15 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist" style="background-color: #eeeeee">
                         <li class="nav-item">
-                            <a class="nav-link" id="coin-tab" data-toggle="tab" href="#coin" role="tab" aria-controls="coin" aria-selected="false">Coin</a>
+                            <a class="nav-link active show" id="coin-tab" data-toggle="tab" href="#coin" role="tab" aria-controls="coin" aria-selected="false"> <b> Coin </b> </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="transaksi-tab" data-toggle="tab" href="#transaksi" role="tab" aria-controls="transaksi" aria-selected="false">Transaksi</a>
+                            <a class="nav-link" id="transaksi-tab" data-toggle="tab" href="#transaksi" role="tab" aria-controls="transaksi" aria-selected="false"> <b> Transaksi </b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="DaftarTransaksi-tab" data-toggle="tab" href="#DaftarTransaksi" role="tab" aria-controls="DaftarTransaksi" aria-selected="false">Daftar Transaksi</a>
+                            <a class="nav-link" id="DaftarTransaksi-tab" data-toggle="tab" href="#DaftarTransaksi" role="tab" aria-controls="DaftarTransaksi" aria-selected="false"><b> Daftar Transaksi </b></a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -39,26 +39,29 @@
 
 
                         @if(!empty($coins) && !empty($coinnew))
-                        <table border="2" class="table">
-                            <thead class="thead-light">
                             <tr>
                                 <td colspan="4">Last Price = {{ $coinnew->harga }}</td>
                             </tr>
-                            <tr>
-                                <th> ID </th>
-                                <th> Nama </th>
-                                <th> Harga </th>
-                                <th> Created at </th>
-                            </tr>
-                            @foreach($coins as $coin)
-                            <tr>
-                                <td> {{ $coin->id }} </td>
-                                <td> {{ $coin->nama }} </td>
-                                <td> {{ $coin->harga }} </td>
-                                <td> {{ $coin->created_at }} </td>
-                            </tr>
-                            
-                            @endforeach
+                            <table border="1" class="table table-stripped">
+                                <thead class="bg-dark text-white text-center">
+                                    <tr>
+                                        <th width="5%"> ID </th>
+                                        <th> Nama </th>
+                                        <th> Harga </th>
+                                        <th> Created at </th>
+                                    </tr>
+                                </thead>
+                                </tbody>
+                                @foreach($coins as $coin)
+                                <tr>
+                                    <td class="text-center"> {{ $coin->id }} </td>
+                                    <td> {{ $coin->nama }} </td>
+                                    <td class="text-center"> {{ $coin->harga }} </td>
+                                    <td class="text-center"> {{ $coin->created_at }} </td>
+                                </tr>
+                        
+                                @endforeach
+                                </tbody>
                         </table>
                         @endif
                         </div>
@@ -93,37 +96,40 @@
                         </div>
 
                         <div class="tab-pane fade" id="DaftarTransaksi" role="tabpanel" aria-labelledby="DaftarTransaksi-tab">
-                            <table border="2" class="table table-responsive">
-                            <thead class="thead-light">
                             <tr>
                                 <td colspan="8">
                                     Total IDR = Rp. {{ $totalTransaksi[0]->total_idr }} <br>
                                     Total Pembelian Coin = {{ $totalTransaksi[0]->total_pembelian_coin }}
                                 </td>
                             </tr>
-                            <tr>
-                                <th> ID </th>
-                                <th> Nama Pembeli </th>
-                                <th> Alamat </th>
-                                <th> Email </th>
-                                <th> No KTP </th>
-                                <th> Jumlah Beli </th>
-                                <th> Total Coin </th>
-                                <th> Created at </th>
-                            </tr>
+                            <table border="1" class="table table-stripped">
+                                <thead class="bg-dark text-white text-center">
+                                    <tr>
+                                        <th width="5%"> ID </th>
+                                        <th> Nama Pembeli </th>
+                                        <th> Alamat </th>
+                                        <th> Email </th>
+                                        <th> No KTP </th>
+                                        <th> Jumlah Beli </th>
+                                        <th> Total Coin </th>
+                                        <th> Created at </th>
+                                    </tr>
+                                </thead>
+                                </tbody>
                             
                             @foreach($transaksis as $transaksi)
                             <tr>
-                                <td> {{ $transaksi->id }} </td>
+                                <td class="text-center"> {{ $transaksi->id }} </td>
                                 <td> {{ $transaksi->nama_pembeli }} </td>
-                                <td> {{ $transaksi->alamat }} </td>
-                                <td> {{ $transaksi->email }} </td>
-                                <td> {{ $transaksi->no_KTP }} </td>
-                                <td> {{ $transaksi->jumlah_beli }} </td>
-                                <td> {{ $transaksi->total_coin }} </td>
-                                <td> {{ $transaksi->created_at }} </td>
+                                <td class="text-center"> {{ $transaksi->alamat }} </td>
+                                <td class="text-center"> {{ $transaksi->email }} </td>
+                                <td class="text-center"> {{ $transaksi->no_KTP }} </td>
+                                <td class="text-center"> {{ $transaksi->jumlah_beli }} </td>
+                                <td class="text-center"> {{ $transaksi->total_coin }} </td>
+                                <td class="text-center"> {{ $transaksi->created_at }} </td>
                             </tr>
                             @endforeach
+                            </tbody>
                         </div>
                 </div>
             </div>
